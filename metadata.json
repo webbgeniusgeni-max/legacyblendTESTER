@@ -1,0 +1,6 @@
+{
+  "name": "Legacy Blend Barbershop",
+  "description": "A premium, high-end barbershop website with modern styling, custom filters, booking appointments, and a stylish visual aesthetic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legacy Blend Barbershop - Sharp Cuts, Clean Confidence</title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              black: '#0a0a0b',
+              card: '#141417',
+              emerald: '#10b981',
+              charcoal: '#1e1e24'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Premium custom styling and dark theme configurations */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #0a0a0b;
+      color: #f3f4f6;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #222227;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+    .text-glow {
+      text-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+    }
+    .custom-gradient {
+      background: radial-gradient(circle at 50% 25%, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-emerald-500 selection:text-black">
+
+  <!-- 1. STICKY HEADER -->
+  <header class="sticky top-0 z-50 py-3.5 px-4 md:px-8 bg-black/90 backdrop-blur-md border-b border-neutral-900">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="p-1.5 md:p-2 bg-neutral-900 border border-emerald-500/30 rounded-lg group-hover:border-emerald-400 group-hover:bg-neutral-850 transition">
+          <i data-lucide="scissors" class="w-5 h-5 text-emerald-500 transition duration-550 group-hover:rotate-45"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-black tracking-tight text-lg md:text-xl uppercase leading-none text-white">
+            Legacy <span class="text-emerald-500 text-glow">Blend</span>
+          </span>
+          <span class="font-mono text-[9px] tracking-widest text-[#6c7482] uppercase leading-none mt-1">Atlanta Co.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#services-sec" class="font-medium text-sm text-neutral-400 hover:text-white transition">Services</a>
+        <a href="#barbers-sec" class="font-medium text-sm text-neutral-400 hover:text-white transition">Barbers</a>
+        <a href="#gallery-sec" class="font-medium text-sm text-neutral-400 hover:text-white transition">Gallery</a>
+        <a href="#reviews-sec" class="font-medium text-sm text-neutral-400 hover:text-white transition">Reviews</a>
+        <a href="#faqs-sec" class="font-medium text-sm text-neutral-400 hover:text-white transition">FAQs</a>
+        <a href="#contact-sec" class="font-medium text-sm text-neutral-400 hover:text-white transition">Contact</a>
+      </nav>
+
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center gap-4">
+        <button id="nav-bookings-btn" class="hidden text-xs font-mono font-bold text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-lg bg-emerald-500/5 hover:text-emerald-300 hover:border-emerald-500/40 transition">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1"></span>
+          My Tickets (<span id="desktop-bookings-count">0</span>)
+        </button>
+        <a href="#booking-sec" class="px-5 py-2.5 bg-neutral-100 hover:bg-emerald-500 text-black hover:text-black font-display font-extrabold text-xs uppercase tracking-wider rounded-lg transition-all duration-300">
+          Book Now
+        </a>
+      </div>
+
+      <!-- Mobile Button triggers -->
+      <div class="flex md:hidden items-center gap-2">
+        <button id="mobile-ticket-badge" class="hidden text-[10px] font-mono font-bold text-emerald-400 border border-emerald-500/20 px-2 py-1.5 rounded-md bg-emerald-500/5">
+          Tickets (<span id="mobile-bookings-count">0</span>)
+        </button>
+        <button id="mobile-toggle-btn" class="p-2 text-neutral-400 hover:text-white hover:bg-neutral-900 rounded-lg transition">
+          <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
+          <i data-lucide="x" id="close-icon" class="w-5 h-5 hidden"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MOBILE MENU DROPDOWN -->
+  <div id="mobile-menu" class="hidden fixed inset-x-0 top-[61px] z-40 bg-[#0a0a0b] border-b border-neutral-900 p-6 flex flex-col gap-4 shadow-2xl">
+    <a href="#services-sec" class="mobile-nav-link text-neutral-300 hover:text-emerald-400 font-display font-bold uppercase tracking-wider text-base py-2 border-b border-neutral-900/50">Services</a>
+    <a href="#barbers-sec" class="mobile-nav-link text-neutral-300 hover:text-emerald-400 font-display font-bold uppercase tracking-wider text-base py-2 border-b border-neutral-900/50">Meet The Barbers</a>
+    <a href="#gallery-sec" class="mobile-nav-link text-neutral-300 hover:text-emerald-400 font-display font-bold uppercase tracking-wider text-base py-2 border-b border-neutral-900/50">Gallery Cuts</a>
+    <a href="#reviews-sec" class="mobile-nav-link text-neutral-300 hover:text-emerald-400 font-display font-bold uppercase tracking-wider text-base py-2 border-b border-neutral-900/50">Reviews</a>
+    <a href="#faqs-sec" class="mobile-nav-link text-neutral-300 hover:text-emerald-400 font-display font-bold uppercase tracking-wider text-base py-2 border-b border-neutral-900/50">FAQs</a>
+    <a href="#contact-sec" class="mobile-nav-link text-neutral-300 hover:text-emerald-400 font-display font-bold uppercase tracking-wider text-base py-2">Contact Info</a>
+    <div class="pt-4 flex flex-col gap-3">
+      <a href="#booking-sec" class="mobile-nav-link w-full text-center py-3 bg-emerald-500 text-black font-display font-bold uppercase tracking-wide text-xs rounded-lg transition">
+        Book Appointment
+      </a>
+      <button id="mobile-drawer-trigger" class="w-full text-center py-3 border border-neutral-800 text-neutral-400 hover:text-white text-xs font-mono tracking-wider rounded-lg">
+        View Saved Tickets
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. HERO -->
+  <section class="relative min-h-[85vh] flex items-center justify-center py-20 px-4 overflow-hidden bg-neutral-950 custom-gradient">
+    <!-- Image background -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1920&auto=format&fit=crop" alt="Legacy Background" class="w-full h-full object-cover opacity-35 filter brightness-75">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/75 to-[#0a0a0b]/50"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 border border-neutral-850 rounded-full bg-neutral-900/70 backdrop-blur-md">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
+        <span class="font-mono text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#d1d5db]">
+          Luxury Grooming • Streetwear Vibe
+        </span>
+      </div>
+
+      <h1 class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white uppercase leading-none mb-6">
+        Sharp Cuts.<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 text-glow">
+          Clean Confidence.
+        </span>
+      </h1>
+
+      <p class="text-neutral-400 text-base md:text-xl max-w-2xl font-light leading-relaxed mb-10 px-4">
+        Experience premium barber custom work in Atlanta. Combining high-end precision skin fades, architectural beard outlines, and classic streetwear lifestyle atmosphere.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center px-4">
+        <a href="#booking-sec" class="w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-display font-black text-sm uppercase tracking-wider rounded-xl transition duration-300 text-center shadow-lg shadow-emerald-500/20">
+          Book Your Appointment
+        </a>
+        <a href="#services-sec" class="w-full sm:w-auto px-8 py-4 border border-neutral-800 hover:border-neutral-600 bg-neutral-900/40 hover:bg-neutral-900/85 text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl transition text-center backdrop-blur-sm">
+          Explore Services & Rates
+        </a>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-neutral-900/60 w-full grid grid-cols-3 gap-4">
+        <div>
+          <p class="font-display font-black text-2xl md:text-4xl text-white">10K+</p>
+          <p class="font-mono text-[9px] md:text-xs text-[#6b7280] uppercase mt-1">Fresh Fades Finished</p>
+        </div>
+        <div class="border-x border-neutral-900/60">
+          <p class="font-display font-black text-2xl md:text-4xl text-emerald-400">24Yrs</p>
+          <p class="font-mono text-[9px] md:text-xs text-[#6b7280] uppercase mt-1">Combined Skill</p>
+        </div>
+        <div>
+          <p class="font-display font-black text-2xl md:text-4xl text-white">4.9★</p>
+          <p class="font-mono text-[9px] md:text-xs text-[#6b7280] uppercase mt-1">500+ Perfect Reviews</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BRAND PHILOSOPHY -->
+  <section class="py-24 px-4 md:px-8 bg-[#0a0a0b] border-t border-neutral-950">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5">
+          <span class="font-mono text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3 inline-block">Legacy Standard</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-white mb-6 leading-tight">
+            Why Legacy Blend Stands Alone in Atlanta
+          </h2>
+          <p class="text-neutral-400 text-base mb-6 leading-relaxed">
+            Legacy Blend is not just about haircuts — it represents a philosophy of confident execution. Rooted deeply in Atlanta's urban culture and upscale style, we designed this space as a luxury retreat for standard grooming.
+          </p>
+          <p class="text-neutral-500 text-sm mb-8 leading-relaxed">
+            Every barber on our team has been scouted for their masterful hand coordination, cleanliness, and alignment with modern streetwear trends. We treat every client's hairline as custom architectural formulation.
+          </p>
+
+          <div class="p-5 border border-neutral-900 bg-neutral-900/20 rounded-xl space-y-3">
+            <h4 class="font-mono text-[10px] uppercase tracking-widest text-[#9ca3af] flex items-center gap-2">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-500"></i>
+              Barbering Studio Hours
+            </h4>
+            <div class="grid grid-cols-2 gap-2 text-sm text-neutral-300">
+              <div>
+                <p class="text-xs text-neutral-500 font-mono">MONDAY - SATURDAY</p>
+                <p class="font-bold text-white">9:00 AM - 8:00 PM</p>
+              </div>
+              <div>
+                <p class="text-xs text-neutral-500 font-mono">SUNDAY</p>
+                <p class="font-bold text-white">11:00 AM - 5:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="space-y-6">
+            <div class="p-8 bg-neutral-900/30 border border-neutral-900 rounded-2xl">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6 border border-emerald-500/20">
+                <i data-lucide="award" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl uppercase mb-3 text-white">Master Artistry</h3>
+              <p class="text-neutral-400 text-sm leading-relaxed">
+                Our team isn't just skilled; they are certified artists holding collective master grooming status. We keep our blades razor-sharp and custom-calibrate clippers daily.
+              </p>
+            </div>
+            <div class="p-8 bg-neutral-900/30 border border-neutral-900 rounded-2xl">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6 border border-emerald-500/20">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl uppercase mb-3 text-white">Clinical Hygiene</h3>
+              <p class="text-neutral-400 text-sm leading-relaxed">
+                We sanitize every comb, shear edge, and blade block using certified grade disinfectants in front of your eyes. Complete premium cleanliness for your comfort.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-6 sm:mt-12">
+            <div class="p-8 bg-neutral-900/30 border border-neutral-900 rounded-2xl">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6 border border-emerald-500/20">
+                <i data-lucide="thumbs-up" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl uppercase mb-3 text-white">Prestige Experience</h3>
+              <p class="text-neutral-400 text-sm leading-relaxed">
+                From chilled vintage drinks and boutique hip-hop playlists to heated oil scalp treatments and premium organic pomades—we configure every node of comfort.
+              </p>
+            </div>
+            <div class="relative overflow-hidden rounded-2xl h-56 border border-neutral-900">
+              <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale hover:grayscale-0 duration-300" alt="Detailing">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SERVICES LIST MENU -->
+  <section id="services-sec" class="py-24 px-4 md:px-8 bg-neutral-950 border-t border-neutral-950 relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="font-mono text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3 inline-block">The Menu</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-white mb-4">
+          Premium Services & Pricing
+        </h2>
+        <p class="text-neutral-400 text-sm font-light">
+          We focus on premium, detailed outcomes. Choose standard classic cut options or indulge in modern high-end grooming combinations.
+        </p>
+      </div>
+
+      <!-- Filters & Search -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mb-10 pb-6 border-b border-neutral-900">
+        <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0" id="services-tabs">
+          <button onclick="filterServices('all')" class="service-tab-btn active px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider font-extrabold transition duration-200 bg-emerald-500 text-black border border-emerald-500">All Grooming</button>
+          <button onclick="filterServices('cut')" class="service-tab-btn px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider font-extrabold transition duration-200 bg-neutral-900 text-neutral-400 border border-neutral-800 hover:border-neutral-700 hover:text-white">Precision Cuts</button>
+          <button onclick="filterServices('beard')" class="service-tab-btn px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider font-extrabold transition duration-200 bg-neutral-900 text-neutral-400 border border-neutral-800 hover:border-neutral-700 hover:text-white">Beard & Shaves</button>
+          <button onclick="filterServices('combo')" class="service-tab-btn px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider font-extrabold transition duration-200 bg-neutral-900 text-neutral-400 border border-neutral-800 hover:border-neutral-700 hover:text-white">Combos</button>
+        </div>
+
+        <div class="relative w-full sm:w-80">
+          <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+            <i data-lucide="search" class="h-4 w-4 text-neutral-500"></i>
+          </span>
+          <input type="text" id="services-search" placeholder="Search services..." class="w-full pl-10 pr-4 py-2.5 bg-neutral-900 border border-neutral-800 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500 transition duration-200 font-mono">
+        </div>
+      </div>
+
+      <!-- Grid list -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="services-container">
+        <!-- Javascript injects -->
+      </div>
+
+      <div class="mt-12 p-4 bg-neutral-900/20 border border-neutral-900 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
+        <i data-lucide="info" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+        <p class="text-neutral-400 text-xs leading-relaxed">
+          <strong class="text-white">Note:</strong> All pricing is absolute with zero hidden surcharges. If you have custom requests (such as complex hair design engraving), please note it down in your notes or discuss it during your in-chair session.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. MEET THE BARBERS -->
+  <section id="barbers-sec" class="py-24 px-4 md:px-8 bg-[#0a0a0b] border-t border-neutral-950">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="font-mono text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3 inline-block">The Specialists</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-white mb-4">
+          Meet The Core Barbers
+        </h2>
+        <p class="text-neutral-400 text-sm font-light">
+          Craft rules. Our specialists carry flawless experience, unique design strengths, and individual streetwear inspirations to Atlanta.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="barbers-container">
+        <!-- Barber 1 -->
+        <div class="group bg-neutral-900/20 border border-neutral-905 rounded-3xl overflow-hidden hover:border-neutral-800 transition duration-300 flex flex-col justify-between">
+          <div class="relative h-72 w-full overflow-hidden bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale group-hover:scale-105 duration-550 transition" alt="Marcus Thompson">
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 px-3 py-1 bg-[#0a0a0b]/80 border border-emerald-500/30 rounded-lg">
+              <span class="font-display font-black text-xs uppercase tracking-wide text-emerald-400">"Fade God"</span>
+            </div>
+            <div class="absolute top-4 right-4 bg-black/70 px-3 py-1 rounded border border-neutral-800 text-[10px] font-mono text-neutral-400">EXP: 8 YRS</div>
+          </div>
+          <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display font-extrabold text-2xl uppercase tracking-tight text-white">Marcus Thompson</h3>
+                <span class="text-[9px] font-mono text-neutral-500 uppercase h-fit flex items-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> active</span>
+              </div>
+              <p class="font-mono text-xs text-emerald-500 font-bold uppercase mb-4">★ Sharp Skin Fades & Geometric Lineups</p>
+              <p class="text-neutral-400 text-sm leading-relaxed mb-6 italic">"Raised in Atlanta's thriving street barber culture. Marcus treats every skin fade as canvas work, engineering seamless transitions."</p>
+              <div class="flex gap-2 mb-8">
+                <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-500">#fades</span>
+                <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-500">#lineups</span>
+              </div>
+            </div>
+            <button onclick="prefillForm('marcus')" class="w-full py-3 bg-neutral-900 hover:bg-emerald-500 text-white hover:text-black font-display font-black uppercase text-xs rounded-xl border border-neutral-800 hover:border-emerald-500 transition duration-350">
+              Select & Book Marcus
+            </button>
+          </div>
+        </div>
+
+        <!-- Barber 2 -->
+        <div class="group bg-neutral-900/20 border border-neutral-905 rounded-3xl overflow-hidden hover:border-neutral-800 transition duration-300 flex flex-col justify-between">
+          <div class="relative h-72 w-full overflow-hidden bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale group-hover:scale-105 duration-550 transition" alt="Jay Reynolds">
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 px-3 py-1 bg-[#0a0a0b]/80 border border-emerald-500/30 rounded-lg">
+              <span class="font-display font-black text-xs uppercase tracking-wide text-emerald-400">"The Architect"</span>
+            </div>
+            <div class="absolute top-4 right-4 bg-black/70 px-3 py-1 rounded border border-neutral-800 text-[10px] font-mono text-neutral-400">EXP: 10 YRS</div>
+          </div>
+          <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display font-extrabold text-2xl uppercase tracking-tight text-white">Jay Reynolds</h3>
+                <span class="text-[9px] font-mono text-neutral-500 uppercase h-fit flex items-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> active</span>
+              </div>
+              <p class="font-mono text-xs text-emerald-500 font-bold uppercase mb-4">★ Precision Beard Design & Scissor Cuts</p>
+              <p class="text-neutral-400 text-sm leading-relaxed mb-6 italic">"An artist of custom symmetry. Jay meticulously analyzes structural facial bones to construct customized, clean classic outlines."</p>
+              <div class="flex gap-2 mb-8">
+                <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-500">#beards</span>
+                <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-500">#scissors</span>
+              </div>
+            </div>
+            <button onclick="prefillForm('jay')" class="w-full py-3 bg-neutral-900 hover:bg-emerald-500 text-white hover:text-black font-display font-black uppercase text-xs rounded-xl border border-neutral-800 hover:border-emerald-500 transition duration-350">
+              Select & Book Jay
+            </button>
+          </div>
+        </div>
+
+        <!-- Barber 3 -->
+        <div class="group bg-neutral-900/20 border border-neutral-905 rounded-3xl overflow-hidden hover:border-neutral-800 transition duration-300 flex flex-col justify-between">
+          <div class="relative h-72 w-full overflow-hidden bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover filter grayscale group-hover:scale-105 duration-550 transition" alt="Rico Martinez">
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 px-3 py-1 bg-[#0a0a0b]/80 border border-emerald-500/30 rounded-lg">
+              <span class="font-display font-black text-xs uppercase tracking-wide text-emerald-400">"Clean Hands"</span>
+            </div>
+            <div class="absolute top-4 right-4 bg-black/70 px-3 py-1 rounded border border-neutral-800 text-[10px] font-mono text-neutral-400">EXP: 6 YRS</div>
+          </div>
+          <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-display font-extrabold text-2xl uppercase tracking-tight text-white">Rico Martinez</h3>
+                <span class="text-[9px] font-mono text-neutral-500 uppercase h-fit flex items-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> active</span>
+              </div>
+              <p class="font-mono text-xs text-emerald-500 font-bold uppercase mb-4">★ Modern Burst Fades & Clean Razor Work</p>
+              <p class="text-neutral-400 text-sm leading-relaxed mb-6 italic">"Rico imports authentic West Coast trends. Renowned for custom burst designs, ultra-precise outlines, and high-contrast razor work."</p>
+              <div class="flex gap-2 mb-8">
+                <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-500">#bursts</span>
+                <span class="px-2.5 py-1 rounded bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-500">#razor</span>
+              </div>
+            </div>
+            <button onclick="prefillForm('rico')" class="w-full py-3 bg-neutral-900 hover:bg-emerald-500 text-white hover:text-black font-display font-black uppercase text-xs rounded-xl border border-neutral-800 hover:border-emerald-500 transition duration-350">
+              Select & Book Rico
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. PHOTO GALLERY -->
+  <section id="gallery-sec" class="py-24 px-4 md:px-8 bg-neutral-950 border-t border-neutral-955 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-16">
+        <div>
+          <span class="font-mono text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3 inline-block">Visual Work</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-white">
+            Sleek Cuts Gallery
+          </h2>
+          <p class="text-neutral-400 text-sm font-light mt-4 max-w-2xl">
+            Explore real, authentic results from Marcus, Rico, and Jay. Mid taper fades, burst gradients, structured beard shapes, and the actual vintage studio atmosphere.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 overflow-x-auto max-w-full pb-2 md:pb-0" id="gallery-tabs">
+          <button onclick="filterGallery('all')" class="gallery-tab-btn active px-3 py-1.5 rounded-lg text-xs font-mono tracking-wide uppercase transition border bg-emerald-500/15 text-emerald-400 border-emerald-500/35">All Cuts</button>
+          <button onclick="filterGallery('tapers')" class="gallery-tab-btn px-3 py-1.5 rounded-lg text-xs font-mono tracking-wide uppercase transition border bg-neutral-900/30 border-neutral-900 text-neutral-500 hover:text-neutral-300">Tapers</button>
+          <button onclick="filterGallery('bursts')" class="gallery-tab-btn px-3 py-1.5 rounded-lg text-xs font-mono tracking-wide uppercase transition border bg-neutral-900/30 border-neutral-900 text-neutral-500 hover:text-neutral-300">Burst Fades</button>
+          <button onclick="filterGallery('beards')" class="gallery-tab-btn px-3 py-1.5 rounded-lg text-xs font-mono tracking-wide uppercase transition border bg-neutral-900/30 border-neutral-900 text-neutral-500 hover:text-neutral-300">Beard Grooming</button>
+          <button onclick="filterGallery('atmos')" class="gallery-tab-btn px-3 py-1.5 rounded-lg text-xs font-mono tracking-wide uppercase transition border bg-neutral-900/30 border-neutral-900 text-neutral-500 hover:text-neutral-300">Shop Vibe</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-container">
+        <!-- Taper 1 (with generated source if desired, or unsplash) -->
+        <div class="gallery-item tapers group relative h-80 rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-900/10">
+          <span class="absolute top-4 left-4 z-20 px-2.5 py-1 bg-neutral-950/80 border border-neutral-800 rounded text-[9px] font-mono uppercase text-emerald-400">Taper Fades</span>
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-700 transition" alt="Sleek Mid Taper">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[10px] text-emerald-500 font-mono uppercase">Certified Cut</span>
+            <h4 class="font-display font-bold text-lg text-white uppercase mt-1">Mid Skin Taper + Styling</h4>
+          </div>
+        </div>
+        <!-- Beards 1 -->
+        <div class="gallery-item beards group relative h-80 rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-900/10">
+          <span class="absolute top-4 left-4 z-20 px-2.5 py-1 bg-neutral-950/80 border border-neutral-800 rounded text-[9px] font-mono uppercase text-emerald-400">Beards</span>
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-700 transition" alt="Beard trim">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[10px] text-emerald-500 font-mono uppercase">Certified Cut</span>
+            <h4 class="font-display font-bold text-lg text-white uppercase mt-1">Beard Trim & Hot Oil Lather</h4>
+          </div>
+        </div>
+        <!-- Bursts 1 -->
+        <div class="gallery-item bursts group relative h-80 rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-900/10">
+          <span class="absolute top-4 left-4 z-20 px-2.5 py-1 bg-neutral-950/80 border border-neutral-800 rounded text-[9px] font-mono uppercase text-emerald-400">Burst Fades</span>
+          <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-700 transition" alt="Burst Cut">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[10px] text-emerald-500 font-mono uppercase">Certified Cut</span>
+            <h4 class="font-display font-bold text-lg text-white uppercase mt-1">Burst Fade with Razor Outline</h4>
+          </div>
+        </div>
+        <!-- Atmos 1 -->
+        <div class="gallery-item atmos group relative h-80 rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-900/10">
+          <span class="absolute top-4 left-4 z-20 px-2.5 py-1 bg-neutral-950/80 border border-neutral-800 rounded text-[9px] font-mono uppercase text-emerald-400">Shop Vibe</span>
+          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-700 transition" alt="Atmosphere">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[10px] text-emerald-500 font-mono uppercase">Atmosphere</span>
+            <h4 class="font-display font-bold text-lg text-white uppercase mt-1">Luxury Station & Leather Comfort</h4>
+          </div>
+        </div>
+        <!-- Tapers 2 -->
+        <div class="gallery-item tapers group relative h-80 rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-900/10">
+          <span class="absolute top-4 left-4 z-20 px-2.5 py-1 bg-neutral-950/80 border border-neutral-800 rounded text-[9px] font-mono uppercase text-emerald-400">Taper Fades</span>
+          <img src="https://images.unsplash.com/photo-1605497746445-97d1b0a9eadb?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-700 transition" alt="Clean taper">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[10px] text-emerald-500 font-mono uppercase">Certified Cut</span>
+            <h4 class="font-display font-bold text-lg text-white uppercase mt-1">Low Premium Taper with Sharp Alignment</h4>
+          </div>
+        </div>
+        <!-- Beards 2 -->
+        <div class="gallery-item beards group relative h-80 rounded-2xl overflow-hidden border border-neutral-900 bg-neutral-900/10">
+          <span class="absolute top-4 left-4 z-20 px-2.5 py-1 bg-neutral-950/80 border border-neutral-800 rounded text-[9px] font-mono uppercase text-emerald-400">Beard Grooming</span>
+          <img src="https://images.unsplash.com/photo-1512864084360-7c0c4d0a0845?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-700 transition" alt="Before transformer">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-6">
+            <span class="text-[10px] text-emerald-500 font-mono uppercase">Beards</span>
+            <h4 class="font-display font-bold text-lg text-white uppercase mt-1">Architectural Razor Beard Lining</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. REVIEWS COLUMNS -->
+  <section id="reviews-sec" class="py-24 px-4 md:px-8 bg-[#0a0a0b] border-t border-neutral-950">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="font-mono text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3 inline-block">Real Feedback</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-white mb-4">
+          Legacy Client Reviews
+        </h2>
+        <p class="text-neutral-400 text-sm font-light">
+          Our commitment reflects directly off recommendations. Check what our recurring clients say about their chairs experience.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="p-6 md:p-8 bg-neutral-900/10 border border-neutral-900 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 mb-5 text-emerald-500">
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+            </div>
+            <p class="text-neutral-300 text-sm leading-relaxed mb-6 italic">"Best fade I've ever had. Devin has a crazy attention to detail is completely unmatched. The entire shop has an amazing atmosphere and standard."</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-neutral-900/50 mt-auto">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center font-display text-xs font-black text-neutral-300">D</div>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-white uppercase">Devin R.</h4>
+                <p class="text-[9px] font-mono text-neutral-500">Verified Client</p>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 bg-neutral-900 text-[10px] font-mono text-emerald-500">Skin Fade</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="p-6 md:p-8 bg-[#10b981]/5 border border-[#10b981]/15 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 mb-5 text-emerald-500">
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+            </div>
+            <p class="text-neutral-300 text-sm leading-relaxed mb-6 italic">"The whole shop has an amazing vibe and the cuts never miss. Best experience with Hot Shave ever. This is my permanent go-to spot now."</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-neutral-900/50 mt-auto">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center font-display text-xs font-black text-neutral-300">M</div>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-white uppercase">Malik T.</h4>
+                <p class="text-[9px] font-mono text-neutral-500">Verified Client</p>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 bg-neutral-900 text-[10px] font-mono text-emerald-500">Haircut & Beard</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="p-6 md:p-8 bg-neutral-900/10 border border-neutral-900 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 mb-5 text-emerald-500">
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-emerald-500"></i>
+            </div>
+            <p class="text-neutral-300 text-sm leading-relaxed mb-6 italic">"Professional, fast, and always gets me right. Rico does incredible razor edge details. If you values clean confidence, check this out."</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-neutral-900/50 mt-auto">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center font-display text-xs font-black text-neutral-300">J</div>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-white uppercase">Jordan S.</h4>
+                <p class="text-[9px] font-mono text-neutral-500">Verified Client</p>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 bg-neutral-900 text-[10px] font-mono text-emerald-500">Burst Edge</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. INSTAGRAM FEED -->
+  <section class="py-16 px-4 md:px-8 bg-[#0c0c0e] border-t border-neutral-950">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-2 mb-2">
+        <i data-lucide="instagram" class="w-4 h-4 text-emerald-500"></i>
+        <span class="font-mono text-xs uppercase tracking-widest text-neutral-400 font-bold">Follow @LegacyBlendBarber</span>
+      </div>
+      <h3 class="font-display font-extrabold text-2xl uppercase tracking-tight text-white mb-8">Recent Instagram Posts</h3>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="group relative aspect-square rounded-xl overflow-hidden border border-neutral-900">
+          <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=350&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-500 transition" alt="Insta 1">
+          <div class="absolute inset-0 bg-[#0a0a0b]/80 opacity-0 group-hover:opacity-100 transition duration-250 flex flex-col justify-center items-center">
+            <i data-lucide="instagram" class="w-5 h-5 text-emerald-400 mb-1"></i>
+            <span class="font-mono text-[10px] text-white uppercase font-bold">1.2K Likes</span>
+          </div>
+        </div>
+        <div class="group relative aspect-square rounded-xl overflow-hidden border border-neutral-900">
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=350&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-500 transition" alt="Insta 2">
+          <div class="absolute inset-0 bg-[#0a0a0b]/80 opacity-0 group-hover:opacity-100 transition duration-250 flex flex-col justify-center items-center">
+            <i data-lucide="instagram" class="w-5 h-5 text-emerald-400 mb-1"></i>
+            <span class="font-mono text-[10px] text-white uppercase font-bold">940 Likes</span>
+          </div>
+        </div>
+        <div class="group relative aspect-square rounded-xl overflow-hidden border border-neutral-900">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=350&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-500 transition" alt="Insta 3">
+          <div class="absolute inset-0 bg-[#0a0a0b]/80 opacity-0 group-hover:opacity-100 transition duration-250 flex flex-col justify-center items-center">
+            <i data-lucide="instagram" class="w-5 h-5 text-emerald-400 mb-1"></i>
+            <span class="font-mono text-[10px] text-white uppercase font-bold">1.4K Likes</span>
+          </div>
+        </div>
+        <div class="group relative aspect-square rounded-xl overflow-hidden border border-neutral-900">
+          <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=350&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 duration-500 transition" alt="Insta 4">
+          <div class="absolute inset-0 bg-[#0a0a0b]/80 opacity-0 group-hover:opacity-100 transition duration-250 flex flex-col justify-center items-center">
+            <i data-lucide="instagram" class="w-5 h-5 text-emerald-400 mb-1"></i>
+            <span class="font-mono text-[10px] text-white uppercase font-bold">1.8K Likes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FAQS ACCORDION -->
+  <section id="faqs-sec" class="py-24 px-4 md:px-8 bg-[#0a0a0b] border-t border-neutral-950">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="font-mono text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3 inline-block">Assistance</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl uppercase tracking-tight text-white mb-4">Frequently Asked Questions</h2>
+        <p class="text-neutral-400 text-sm font-light">Transparency is standard. Click below to expand operating parameters.</p>
+      </div>
+
+      <div class="space-y-4 font-mono">
+        <!-- FAQ 1 -->
+        <div class="bg-neutral-900/20 border border-neutral-900 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(0)" class="w-full text-left p-6 flex items-center justify-between gap-4">
+            <span class="font-display font-bold text-base md:text-lg text-white uppercase leading-tight">Do you accept walk-ins or are appointments mandatory?</span>
+            <div class="w-8 h-8 rounded-full border border-neutral-800 bg-black flex items-center justify-center text-neutral-400 shrink-0">
+              <i data-lucide="chevron-down" class="w-4 h-4 faq-chevron"></i>
+            </div>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed">
+            We strongly recommend booking in advance to secure your preferred barber and exact hours. However, we do accept walk-ins based on hourly chair availability, with priority always maintained for clients holding reservations.
+          </div>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="bg-neutral-900/20 border border-neutral-900 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(1)" class="w-full text-left p-6 flex items-center justify-between gap-4">
+            <span class="font-display font-bold text-base md:text-lg text-white uppercase leading-tight">What is your barber shop's cancellation policy?</span>
+            <div class="w-8 h-8 rounded-full border border-neutral-800 bg-black flex items-center justify-center text-neutral-400 shrink-0">
+              <i data-lucide="chevron-down" class="w-4 h-4 faq-chevron"></i>
+            </div>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed">
+            We value both our clients' schedules and our barbers' craft. You can reschedule or cancel your appointment free of charge up to 4 hours in advance. Rescheduling within 4 hours may incur a 30% retention fee.
+          </div>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="bg-neutral-900/20 border border-neutral-900 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(2)" class="w-full text-left p-6 flex items-center justify-between gap-4">
+            <span class="font-display font-bold text-base md:text-lg text-white uppercase leading-tight">What payment methods do you accept at the shop?</span>
+            <div class="w-8 h-8 rounded-full border border-neutral-800 bg-black flex items-center justify-center text-neutral-400 shrink-0">
+              <i data-lucide="chevron-down" class="w-4 h-4 faq-chevron"></i>
+            </div>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-neutral-400 text-sm leading-relaxed">
+            We accept all major credit/debit cards (Visa, MasterCard, American Express), Apple Pay, Google Pay, and Cash. Cash tips are highly appreciated by our styling team.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. INTERACTIVE APPOINTMENT FORM -->
+  <section id="booking-sec" class="py-24 px-4 md:px-8 bg-neutral-950 border-t border-neutral-950">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="font-mono text-xs font-bold text-emerald-500 uppercase tracking-widest mb-3 inline-block">Lock in your slot</span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-white mb-4">
+              Schedule Your Legacy Experience
+            </h2>
+            <p class="text-neutral-400 text-base leading-relaxed">
+              Secure your personalized session with Atlanta's prestige barbers. Use our dynamic appointment builder to choose your service, barber, and exact timing. Walk out feeling fresh and empowered.
+            </p>
+          </div>
+
+          <div class="p-6 md:p-8 bg-neutral-900/30 border border-neutral-900 rounded-2xl space-y-6">
+            <h3 class="font-display font-bold text-lg text-white uppercase border-b border-neutral-850 pb-3 flex items-center gap-2">
+              <i data-lucide="scissors" class="w-4 h-4 text-emerald-500"></i> Headquarters
+            </h3>
+
+            <!-- Fictional Contact Data -->
+            <div class="flex items-start gap-4">
+              <div class="p-2 bg-neutral-900 border border-neutral-800 rounded-lg text-emerald-500 shrink-0 mt-0.5">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-[#9ca3af] uppercase">STREET ADDRESS</h4>
+                <p class="text-white text-sm mt-1">215 Edgewood Avenue</p>
+                <p class="text-neutral-400 text-xs">Atlanta, GA 30303</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="p-2 bg-neutral-900 border border-neutral-800 rounded-lg text-emerald-500 shrink-0">
+                <i data-lucide="phone" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-[#9ca3af] uppercase">PHONE NUMBER</h4>
+                <p class="text-emerald-400 font-mono text-sm mt-1 hover:underline"><a href="tel:4045550187">(404) 555-0187</a></p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="p-2 bg-neutral-900 border border-neutral-800 rounded-lg text-emerald-500 shrink-0">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-[#9ca3af] uppercase">EMAIL BOOKINGS</h4>
+                <p class="text-white text-sm mt-1 hover:underline"><a href="mailto:bookings@legacyblendbarber.com">bookings@legacyblendbarber.com</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-neutral-900/25 border border-neutral-900 rounded-3xl p-6 md:p-10" id="form-form-container">
+          <form id="booking-html-form" class="space-y-6">
+            <div>
+              <h3 class="font-display font-extrabold text-2xl uppercase tracking-tight text-white mb-1.5">Appointment Request</h3>
+              <p class="text-xs text-neutral-400 font-mono">Fill details carefully to secure instant verification.</p>
+            </div>
+
+            <div id="form-error-panel" class="hidden p-3 bg-red-950/40 border border-red-500/20 text-red-200 text-xs rounded-lg"></div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Full Name *</label>
+              <input type="text" id="inp-name" required placeholder="e.g. Devin Rogers" class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-white focus:outline-none focus:border-brand-emerald transition">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Phone Number *</label>
+                <input type="tel" id="inp-phone" required placeholder="(404) 555-0187" class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-white focus:outline-none focus:border-brand-emerald transition">
+              </div>
+              <div class="space-y-2">
+                <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Email Address *</label>
+                <input type="email" id="inp-email" required placeholder="e.g. devin@gmail.com" class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-white focus:outline-none focus:border-brand-emerald transition">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Preferred Barber *</label>
+                <select id="inp-barber" required class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-neutral-300 focus:outline-none appearance-none cursor-pointer">
+                  <option value="">-- Choose Your Specialist --</option>
+                  <option value="marcus">Marcus Thompson (Fade God)</option>
+                  <option value="jay">Jay Reynolds (The Architect)</option>
+                  <option value="rico">Rico Martinez (Clean Hands)</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Desired Service *</label>
+                <select id="inp-service" required class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-neutral-300 focus:outline-none appearance-none cursor-pointer">
+                  <option value="">-- Select Your Clean Service --</option>
+                  <option value="classic-haircut">Classic Haircut — $30</option>
+                  <option value="skin-fade">Skin Fade — $40</option>
+                  <option value="beard-trim">Beard Trim — $20</option>
+                  <option value="combo">Haircut & Beard Combo — $50</option>
+                  <option value="kids-cut">Kids Cut — $25</option>
+                  <option value="hot-towel-shave">Hot Towel Shave — $35</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Preferred Date *</label>
+                <input type="date" id="inp-date" required class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-neutral-300 focus:outline-none">
+              </div>
+              <div class="space-y-2">
+                <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Desired Timeframe *</label>
+                <select id="inp-time" required class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-neutral-300 focus:outline-none appearance-none cursor-pointer">
+                  <option value="">-- Select Available Time --</option>
+                  <option value="09:00 AM">09:00 AM</option>
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="11:00 AM">11:00 AM</option>
+                  <option value="12:30 PM">12:30 PM</option>
+                  <option value="01:30 PM">01:30 PM</option>
+                  <option value="03:00 PM">03:00 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-mono font-bold uppercase text-neutral-400">Notes / Special Instructions</label>
+              <textarea id="inp-notes" rows="3" placeholder="e.g. Skin sensitive detail work..." class="w-full px-4 py-3 bg-neutral-900 border border-neutral-850 rounded-lg text-sm text-white focus:outline-none resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-emerald-500 font-display font-black uppercase text-sm tracking-widest rounded-xl hover:bg-emerald-400 text-black duration-200">
+              Request Confirmed Reservation
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FOOTER -->
+  <footer class="bg-black border-t border-neutral-900 py-16 px-4 md:px-8 text-neutral-400">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-16">
+        <div class="md:col-span-4 space-y-6">
+          <div class="flex items-center gap-2">
+            <div class="p-1.5 bg-neutral-900 rounded-lg">
+              <i data-lucide="scissors" class="w-5 h-5 text-emerald-550"></i>
+            </div>
+            <span class="font-display font-black tracking-tight text-xl uppercase text-white">Legacy <span class="text-emerald-500">Blend</span></span>
+          </div>
+          <p class="text-neutral-500 text-sm max-w-sm">Designing sharp outputs and fresh confidence through detailed hair craftsmanship in downtown Atlanta.</p>
+        </div>
+        <div class="md:col-span-3 space-y-4">
+          <h3 class="font-mono text-xs uppercase tracking-widest text-[#9ca3af] font-bold">Menu Links</h3>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#services-sec" class="hover:text-emerald-450 transition">Services Menu</a></li>
+            <li><a href="#barbers-sec" class="hover:text-emerald-450 transition">Core Barbers</a></li>
+            <li><a href="#gallery-sec" class="hover:text-emerald-450 transition">Cut Gallery</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-5 space-y-4">
+          <h3 class="font-mono text-xs uppercase tracking-widest text-[#9ca3af] font-bold">Studio Hours</h3>
+          <p class="text-xs">Mon - Sat: 9 AM - 8 PM <br /> Sun: 11 AM - 5 PM</p>
+        </div>
+      </div>
+      <div class="border-t border-neutral-900 pt-8 flex flex-col sm:flex-row justify-between text-xs text-neutral-600 font-mono">
+        <p>© 2026 Legacy Blend Barbershop Co. All Rights Reserved. Not backed by AI.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DYNAMIC MY BOOKINGS DRAWER -->
+  <div id="bookings-drawer-overlay" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50"></div>
+  <div id="bookings-drawer" class="fixed right-0 top-0 bottom-0 w-full max-w-lg bg-[#0a0a0c] border-l border-neutral-900 z-50 p-6 md:p-8 overflow-y-auto transform translate-x-full transition-transform duration-300">
+    <div class="flex items-center justify-between pb-6 border-b border-neutral-900 mb-6">
+      <div>
+        <h3 class="font-display font-extrabold text-xl uppercase tracking-wider text-white">Your Reserved Tickets</h3>
+        <p class="font-mono text-[10px] text-neutral-500">List of locally stored barbering sessions</p>
+      </div>
+      <button id="close-drawer-btn" class="p-2 border border-neutral-900 rounded-lg text-neutral-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+    
+    <div class="space-y-6" id="drawer-tickets-list">
+      <!-- Bookings list -->
+    </div>
+  </div>
+
+  <script>
+    // Fictional databases
+    const SERVICES_MAP = {
+      'classic-haircut': { name: 'Classic Haircut', price: 30 },
+      'skin-fade': { name: 'Skin Fade', price: 40 },
+      'beard-trim': { name: 'Beard Trim', price: 20 },
+      'combo': { name: 'Haircut & Beard Combo', price: 50 },
+      'kids-cut': { name: 'Kids Cut', price: 25 },
+      'hot-towel-shave': { name: 'Hot Towel Shave', price: 35 }
+    };
+
+    const BARBERS_MAP = {
+      'marcus': 'Marcus Thompson',
+      'jay': 'Jay Reynolds',
+      'rico': 'Rico Martinez'
+    };
+
+    // Initialize Lucide
+    lucide.createIcons();
+
+    // Responsive Mobile Drawer Menu Toggle
+    const mobileBtn = document.getElementById('mobile-toggle-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+
+    // Render Services
+    const serviceItems = [
+      { id: 'classic-haircut', name: 'Classic Haircut', price: 30, duration: '30 min', category: 'cut', desc: 'Standard scissor and clipper work tailored to your head shape. Includes neck shave.' },
+      { id: 'skin-fade', name: 'Skin Fade', price: 40, duration: '45 min', category: 'cut', desc: 'Ultra-precise seamless skin fade with outline lining finished with pomade.' },
+      { id: 'beard-trim', name: 'Beard Trim', price: 20, duration: '30 min', category: 'beard', desc: 'Sculpting, razor shaping with professional essential beard oils.' },
+      { id: 'combo', name: 'Haircut & Beard Combo', price: 50, duration: '60 min', category: 'combo', desc: 'Our signature cut coupled with beard styling, razor lineup, and hot compress.' }
+    ];
+
+    function renderServices(items) {
+      const container = document.getElementById('services-container');
+      container.innerHTML = '';
+      items.forEach(srv => {
+        container.innerHTML += `
+          <div class="srv p-6 bg-neutral-900/40 border border-neutral-900 rounded-2xl flex flex-col justify-between hover:border-emerald-500/10 hover:bg-neutral-900/60 transition group" data-category="${srv.category}">
+            <div>
+              <div class="flex items-start justify-between gap-4 mb-4">
+                <div class="px-2.5 py-1 bg-neutral-950 border border-neutral-900 text-[10px] text-emerald-500 font-mono uppercase rounded">${srv.category}</div>
+                <span class="font-mono text-xs text-neutral-500">${srv.duration}</span>
+              </div>
+              <div class="flex items-baseline justify-between mb-3">
+                <h3 class="font-display font-bold text-lg text-white group-hover:text-emerald-400 transition-colors uppercase leading-tight">${srv.name}</h3>
+                <span class="font-display font-black text-xl text-emerald-500">$${srv.price}</span>
+              </div>
+              <p class="text-neutral-400 text-xs md:text-sm mb-6">${srv.desc}</p>
+            </div>
+            <button onclick="prefillForm(null, '${srv.id}')" class="w-full py-2.5 border border-neutral-800 rounded-lg text-xs font-mono font-bold uppercase text-neutral-300 hover:bg-emerald-500 hover:text-black hover:border-emerald-500 transition duration-300">Book Service</button>
+          </div>
+        `;
+      });
+    }
+    renderServices(serviceItems);
+
+    function filterServices(category) {
+      document.querySelectorAll('.service-tab-btn').forEach(btn => btn.classList.remove('active', 'bg-emerald-500', 'text-black', 'border-emerald-500'));
+      event.target.classList.add('active', 'bg-emerald-500', 'text-black', 'border-emerald-500');
+      
+      const filtered = category === 'all' ? serviceItems : serviceItems.filter(s => s.category === category);
+      renderServices(filtered);
+    }
+
+    // Search input filtered list
+    document.getElementById('services-search').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = serviceItems.filter(s => s.name.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q));
+      renderServices(filtered);
+    });
+
+    // Pre-fill Appointment requests
+    function prefillForm(barberId, serviceId) {
+      if (barberId) document.getElementById('inp-barber').value = barberId;
+      if (serviceId) document.getElementById('inp-service').value = serviceId;
+      document.getElementById('booking-sec').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Filter Gallery
+    function filterGallery(tag) {
+      document.querySelectorAll('.gallery-tab-btn').forEach(btn => btn.classList.remove('active', 'bg-emerald-500/15', 'text-emerald-400', 'border-emerald-500/35'));
+      event.target.classList.add('active', 'bg-emerald-500/15', 'text-emerald-400', 'border-emerald-500/35');
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(it => {
+        if (tag === 'all' || it.classList.contains(tag)) {
+          it.style.display = 'block';
+        } else {
+          it.style.display = 'none';
+        }
+      });
+    }
+
+    // FAQ togglers
+    function toggleFaq(index) {
+      const contents = document.querySelectorAll('.faq-content');
+      const chevrons = document.querySelectorAll('.faq-chevron');
+      const container = contents[index];
+      const chevron = chevrons[index];
+      
+      const isHidden = container.classList.contains('hidden');
+      contents.forEach(it => it.classList.add('hidden'));
+      chevrons.forEach(ch => ch.classList.remove('rotate-180'));
+
+      if (isHidden) {
+        container.classList.remove('hidden');
+        chevron.classList.add('rotate-180');
+      }
+    }
+
+    // Bookings Data persistence Management
+    let localBookings = JSON.parse(localStorage.getItem('legacy_bookings')) || [];
+
+    function syncBookingsBadge() {
+      const hasBookings = localBookings.length > 0;
+      const count = localBookings.length;
+      
+      document.getElementById('nav-bookings-btn').style.display = hasBookings ? 'block' : 'none';
+      document.getElementById('mobile-ticket-badge').style.display = hasBookings ? 'block' : 'none';
+      document.getElementById('desktop-bookings-count').innerText = count;
+      document.getElementById('mobile-bookings-count').innerText = count;
+    }
+    syncBookingsBadge();
+
+    // Add to bookings
+    document.getElementById('booking-html-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const errPanel = document.getElementById('form-error-panel');
+      errPanel.classList.add('hidden');
+
+      const name = document.getElementById('inp-name').value.trim();
+      const phone = document.getElementById('inp-phone').value.trim();
+      const email = document.getElementById('inp-email').value.trim();
+      const barber = document.getElementById('inp-barber').value;
+      const service = document.getElementById('inp-service').value;
+      const date = document.getElementById('inp-date').value;
+      const time = document.getElementById('inp-time').value;
+      const notes = document.getElementById('inp-notes').value;
+
+      if (!name || !phone || !email || !barber || !service || !date || !time) {
+        errPanel.innerText = "Please fill in all required (*) fields.";
+        errPanel.classList.remove('hidden');
+        return;
+      }
+
+      const bookingObj = {
+        id: 'LGB-' + Math.floor(1000 + Math.random() * 9000),
+        name, phone, email, barberName: BARBERS_MAP[barber], serviceName: SERVICES_MAP[service].name, price: SERVICES_MAP[service].price, date, time, notes, createdAt: new Date().toLocaleDateString()
+      };
+
+      localBookings.unshift(bookingObj);
+      localStorage.setItem('legacy_bookings', JSON.stringify(localBookings));
+      syncBookingsBadge();
+
+      // Show animated ticket success
+      const container = document.getElementById('form-form-container');
+      container.innerHTML = `
+        <div class="text-center py-6 space-y-6">
+          <div class="mx-auto w-14 h-14 bg-emerald-500/10 border border-emerald-500 rounded-full flex items-center justify-center text-emerald-400">
+            <i data-lucide="check" class="w-7 h-7"></i>
+          </div>
+          <div>
+            <span class="font-mono text-xs text-emerald-400 tracking-wider">RESERVATION CONFIRMED SECURELY</span>
+            <h3 class="font-display font-black text-2xl uppercase text-white mt-1">Ready for checkout!</h3>
+            <p class="text-neutral-400 text-xs mt-2 max-w-sm mx-auto">Logged into local web session. Show this digital ticket receipt at the 215 Edgewood Ave check-in desk.</p>
+          </div>
+
+          <div class="max-w-sm mx-auto border border-neutral-800 bg-[#0a0a0c] rounded-2xl overflow-hidden font-mono text-left text-xs text-neutral-300">
+            <div class="p-5 border-b border-neutral-900 flex justify-between">
+              <div>
+                <p class="text-[9px] text-neutral-500">TICKET REF</p>
+                <p class="text-emerald-400 font-bold">${bookingObj.id}</p>
+              </div>
+              <div class="text-right">
+                <p class="text-[9px] text-neutral-500">DATE</p>
+                <p class="font-bold text-white">${bookingObj.createdAt}</p>
+              </div>
+            </div>
+            <div class="p-5 space-y-4">
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <p class="text-[8px] text-neutral-500 uppercase">Client</p>
+                  <p class="font-bold text-white truncate">${bookingObj.name}</p>
+                </div>
+                <div>
+                  <p class="text-[8px] text-neutral-500 uppercase">Service</p>
+                  <p class="font-bold text-emerald-400 truncate">${bookingObj.serviceName}</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2 border-t border-neutral-900 pt-3">
+                <div>
+                  <p class="text-[8px] text-neutral-500 uppercase">Barber</p>
+                  <p class="font-bold text-white">${bookingObj.barberName}</p>
+                </div>
+                <div>
+                  <p class="text-[8px] text-neutral-500 uppercase">Timeframe</p>
+                  <p class="font-bold text-emerald-405">${bookingObj.date} @ ${bookingObj.time}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="window.location.reload()" class="px-5 py-2.5 bg-neutral-900 border border-neutral-800 hover:bg-neutral-850 rounded-xl text-xs font-mono uppercase text-white tracking-widest duration-200">Book another session</button>
+        </div>
+      `;
+      lucide.createIcons();
+    });
+
+    // Drawer triggers
+    const overlay = document.getElementById('bookings-drawer-overlay');
+    const drawer = document.getElementById('bookings-drawer');
+    const closeDrawerBtn = document.getElementById('close-drawer-btn');
+
+    function openDrawer() {
+      drawer.classList.remove('translate-x-full');
+      overlay.classList.remove('hidden');
+      renderDrawerTickets();
+    }
+
+    function closeDrawer() {
+      drawer.classList.add('translate-x-full');
+      overlay.classList.add('hidden');
+    }
+
+    document.getElementById('nav-bookings-btn').addEventListener('click', openDrawer);
+    document.getElementById('mobile-ticket-badge').addEventListener('click', openDrawer);
+    document.getElementById('mobile-drawer-trigger').addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      openDrawer();
+    });
+    closeDrawerBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    function renderDrawerTickets() {
+      const list = document.getElementById('drawer-tickets-list');
+      list.innerHTML = '';
+      if (localBookings.length === 0) {
+        list.innerHTML = `
+          <div class="py-16 text-center border border-dashed border-neutral-800 rounded-xl">
+            <p class="font-mono text-xs text-neutral-500 uppercase">No active slot tickets found</p>
+          </div>
+        `;
+        return;
+      }
+
+      localBookings.forEach((book, index) => {
+        list.innerHTML += `
+          <div class="border border-neutral-900 bg-neutral-900/10 p-5 rounded-2xl relative space-y-4 font-mono">
+            <div class="flex justify-between">
+              <div>
+                <span class="px-2 py-0.5 bg-neutral-950 border border-neutral-900 rounded text-[9px] text-[#9ca3af]">${book.id}</span>
+                <h4 class="font-display font-extrabold text-sm text-white uppercase mt-2">${book.serviceName}</h4>
+              </div>
+              <span class="font-display font-black text-emerald-500 text-base">$${book.price}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <p class="text-[8px] text-neutral-500 uppercase">Barber</p>
+                <p class="font-semibold text-white truncate mt-0.5">${book.barberName}</p>
+              </div>
+              <div>
+                <p class="text-[8px] text-neutral-500 uppercase">Schedule</p>
+                <p class="font-semibold text-emerald-400 truncate mt-0.5">${book.date} @ ${book.time}</p>
+              </div>
+            </div>
+            <div class="border-t border-neutral-900/60 pt-3 flex items-center justify-between">
+              <span class="text-[9px] text-neutral-500">Reserved ${book.createdAt}</span>
+              <button onclick="cancelTicket('${book.id}')" class="px-2.5 py-1 text-red-400 hover:text-red-300 hover:bg-red-950/20 border border-red-900/30 rounded duration-200 text-[10px]">Cancel</button>
+            </div>
+          </div>
+        `;
+      });
+      lucide.createIcons();
+    }
+
+    function cancelTicket(id) {
+      if (confirm("Are you sure you want to cancel this booking?")) {
+        localBookings = localBookings.filter(b => b.id !== id);
+        localStorage.setItem('legacy_bookings', JSON.stringify(localBookings));
+        syncBookingsBadge();
+        renderDrawerTickets();
+      }
+    }
+  </script>
+
+</body>
+</html>
